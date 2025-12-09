@@ -1,0 +1,19 @@
+# System
+.DS_Store
+Thumbs.db
+*.log
+pkg_dump.txt
+test.*
+起動方法.txt
+
+# Dependencies
+node_modules/
+
+# Rust Source (Excluded by request)
+SpriteFusion-Pixel-Snapper/
+pixel-snapper/
+**/*.rs.bk
+
+# Misc
+.vscode/
+.idea/

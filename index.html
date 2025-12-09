@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel-Snapper-Negi-UI</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>Pixel-Snapper-Negi-UI</h1>
+        <span class="badge">WASM VER</span>
+      </div>
+
+      <div class="control-group">
+        <label>Upload Image</label>
+        <div class="file-drop-area" id="dropZone">
+          <p>Drag & Drop or Click</p>
+          <input type="file" id="fileInput" accept="image/*" hidden />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Input Scale (Resize)</label>
+        <div class="slider-container">
+          <input type="range" id="inputScale" min="10" max="100" value="100" step="5">
+          <span id="inputScaleVal">100%</span>
+        </div>
+        <small class="hint" id="resDisplay">Original: -</small>
+
+
+      </div>
+
+      <div class="control-group">
+        <label>View Options</label>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <label for="showGrid" style="font-size: 0.8rem; cursor: pointer;">Show Pixel Grid</label>
+          <input type="checkbox" id="showGrid" style="width: auto;">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Pre-processing (Tweaks)</label>
+        <div class="slider-container" style="font-size:0.8rem">
+          <span>Contrast</span>
+          <input type="range" id="contrast" min="50" max="150" value="100" step="1">
+          <span id="contrastVal">100%</span>
+        </div>
+        <div class="slider-container" style="font-size:0.8rem">
+          <span>Saturation</span>
+          <input type="range" id="saturation" min="0" max="200" value="100" step="1">
+          <span id="saturationVal">100%</span>
+        </div>
+      </div>
+
+      <div class="control-group" style="display:none">
+        <label for="gridSize">Grid Size (Pixelation)</label>
+        <div class="slider-container">
+          <input type="range" id="gridSize" min="1" max="16" value="1" step="1">
+          <span id="gridSizeVal">1px</span>
+        </div>
+        <small class="hint">Auto-detect (WASM)</small>
+      </div>
+
+
+
+      <div class="control-group">
+        <label>Export Settings</label>
+        <div class="slider-container" style="font-size:0.8rem">
+          <span>Output Scale</span>
+          <input type="range" id="exportScale" min="1" max="16" value="1" step="1">
+          <span id="exportScaleVal">1x</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="colorCount">Color Count</label>
+        <div class="slider-container">
+          <input type="range" id="colorCount" min="2" max="256" value="16" step="1">
+          <span id="colorCountVal">16</span>
+        </div>
+      </div>
+
+      <div class="control-group" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <label>Grid Offset (Manual Align)</label>
+          <button id="resetOffsetsBtn" class="secondary-btn" style="padding: 2px 8px; font-size: 0.7rem;">Reset</button>
+        </div>
+        <div class="slider-container" style="font-size:0.8rem">
+          <span>X</span>
+          <input type="range" id="offX" min="0" max="16" value="0" step="1">
+          <span id="offXVal">0</span>
+        </div>
+        <div class="slider-container" style="font-size:0.8rem">
+          <span>Y</span>
+          <input type="range" id="offY" min="0" max="16" value="0" step="1">
+          <span id="offYVal">0</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Actions</label>
+        <button id="snapBtn" class="primary-btn">Snap Pixels</button>
+        <button id="downloadBtn" class="secondary-btn" disabled>Download PNG</button>
+      </div>
+
+      <div class="status-bar" id="statusBar">Ready</div>
+    </aside>
+
+    <main class="main-content">
+      <div class="canvas-container" id="canvasContainer">
+        <!-- Canvas will be injected or managed here -->
+        <canvas id="mainCanvas"></canvas>
+        <div id="compareSlider" class="compare-slider"></div>
+        <canvas id="magnifier" class="magnifier" width="200" height="200"></canvas>
+      </div>
+      <div class="zoom-controls">
+        <button id="zoomOut">-</button>
+        <span id="zoomLevel">100%</span>
+        <button id="zoomIn">+</button>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="src/main.js?v=2"></script>
+</body>
+
+</html>
